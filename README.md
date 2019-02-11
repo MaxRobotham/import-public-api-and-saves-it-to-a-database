@@ -1,4 +1,4 @@
-# ProjectManagerExample
+#  API save to database example
 
 To start your Phoenix server:
 
