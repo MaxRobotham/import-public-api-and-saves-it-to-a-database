@@ -70,7 +70,7 @@ config :phoenix, :plug_init_mode, :runtime
 config :project_management_example, ProjectManagementExample.Repo,
  # adapter:Ecto.Adapters.Postgres, #taken from video
   username: "postgres",
-  password: "postgres",
+  password: "password", #password used to access pgAdmin4
   database: "project_management_example_dev",
   hostname: "localhost",
   pool_size: 10
