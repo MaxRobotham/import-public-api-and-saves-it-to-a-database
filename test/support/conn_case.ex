@@ -1,11 +1,11 @@
-defmodule ProjectManagementExampleWeb.ConnCase do
+defmodule ProjectManagerExampleWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
 
   Such tests rely on `Phoenix.ConnTest` and also
   import other functionality to make it easier
-  to build common data structures and query the data layer.
+  to build common datastructures and query the data layer.
 
   Finally, if the test case interacts with the database,
   it cannot be async. For this reason, every test runs
@@ -19,20 +19,20 @@ defmodule ProjectManagementExampleWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      alias ProjectManagementExampleWeb.Router.Helpers, as: Routes
+      import ProjectManagerExampleWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint ProjectManagementExampleWeb.Endpoint
+      @endpoint ProjectManagerExampleWeb.Endpoint
     end
   end
+
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ProjectManagementExample.Repo)
-
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ProjectManagerExample.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ProjectManagementExample.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(ProjectManagerExample.Repo, {:shared, self()})
     end
-
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
+
 end

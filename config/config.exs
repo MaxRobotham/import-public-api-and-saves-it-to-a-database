@@ -3,28 +3,32 @@
 #
 # This configuration file is loaded before any dependency and
 # is restricted to this project.
-
-# General application configuration
 use Mix.Config
 
-config :project_management_example,
-  ecto_repos: [ProjectManagementExample.Repo]
+# General application configuration
+config :project_manager_example,
+  ecto_repos: [ProjectManagerExample.Repo]
 
 # Configures the endpoint
-config :project_management_example, ProjectManagementExampleWeb.Endpoint,
+config :project_manager_example, ProjectManagerExampleWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "FBD5yULROsCqhpQ4C/BwB8/OC9SEPGHt4Dx7ef3uvcorXWJvjy5kag2p/JU5NIyr",
-  render_errors: [view: ProjectManagementExampleWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: ProjectManagementExample.PubSub, adapter: Phoenix.PubSub.PG2]
+  secret_key_base: "3ULzKTX4JVhCeWGUNlEOxgqp4tEjV+WQrJVD7CIE4SAZdHttszjbNFkdXlwrpiOE",
+  render_errors: [view: ProjectManagerExampleWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: ProjectManagerExample.PubSub,
+           adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-# Use Jason for JSON parsing in Phoenix
-config :phoenix, :json_library, Jason
+config :mime, :types, %{
+  "application/vnd.api+json" => ["json-api"]
+}
+
+config :phoenix, :format_encoders,
+  "json-api": Poison
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env()}.exs"
+import_config "#{Mix.env}.exs"
